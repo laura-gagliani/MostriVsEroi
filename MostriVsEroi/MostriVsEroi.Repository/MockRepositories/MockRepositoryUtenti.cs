@@ -12,7 +12,16 @@ namespace MostriVsEroi.Repository.MockRepositories
     {
         public bool Add(User item)
         {
-            throw new NotImplementedException();
+            int maxId = GetAll().Select(u => u.UserId).Max();
+            item.UserId = maxId++;
+
+            int countIniziale = InMemoryStorage.Utenti.Count;
+            InMemoryStorage.Utenti.Add(item);
+
+            if (InMemoryStorage.Utenti.Count == countIniziale++)
+                return true;
+            else
+                return false;
         }
 
         public bool Delete(User item)
@@ -22,7 +31,10 @@ namespace MostriVsEroi.Repository.MockRepositories
 
         public List<User> GetAll(Func<User, bool> filter = null)
         {
-            throw new NotImplementedException();
+            if (filter == null)
+                return InMemoryStorage.Utenti;
+            else
+                return InMemoryStorage.Utenti.Where(filter).ToList();
         }
 
         public bool Update(User item)

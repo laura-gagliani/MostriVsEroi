@@ -25,14 +25,41 @@ namespace MostriVsEroi.Repository
         {
             new Arma() { IdArma = 1, Nome= "Alabarda", PuntiDanno = 15, Categoria = Arma.CategoriaPersonaggi.Guerriero },
             new Arma() { IdArma = 2, Nome= "Ascia", PuntiDanno = 8, Categoria = Arma.CategoriaPersonaggi.Guerriero },
+            new Arma() { IdArma = 3, Nome= "Mazza", PuntiDanno = 5, Categoria = Arma.CategoriaPersonaggi.Guerriero },
+            new Arma() { IdArma = 4, Nome= "Spada", PuntiDanno = 10, Categoria = Arma.CategoriaPersonaggi.Guerriero },
+            new Arma() { IdArma = 5, Nome= "Spadone", PuntiDanno = 15, Categoria = Arma.CategoriaPersonaggi.Guerriero },
 
-            new Arma() { IdArma = 3, Nome= "Arco", PuntiDanno = 7, Categoria = Arma.CategoriaPersonaggi.Orco },
-            new Arma() { IdArma = 4, Nome= "Bacchetta", PuntiDanno = 5, Categoria = Arma.CategoriaPersonaggi.Mago },
+            new Arma() { IdArma = 6, Nome= "Arco e frecce", PuntiDanno = 8, Categoria = Arma.CategoriaPersonaggi.Mago },
+            new Arma() { IdArma = 7, Nome= "Bacchetta", PuntiDanno = 5, Categoria = Arma.CategoriaPersonaggi.Mago },
+            new Arma() { IdArma = 8, Nome= "Bastone magico", PuntiDanno = 10, Categoria = Arma.CategoriaPersonaggi.Mago },
+            new Arma() { IdArma = 9, Nome= "Onda d'urto", PuntiDanno = 15, Categoria = Arma.CategoriaPersonaggi.Mago },
+            new Arma() { IdArma = 10, Nome= "Pugnale", PuntiDanno = 5, Categoria = Arma.CategoriaPersonaggi.Mago },
+
+            new Arma() { IdArma = 11, Nome= "Discorso noioso", PuntiDanno = 4, Categoria = Arma.CategoriaPersonaggi.Cultista },
+            new Arma() { IdArma = 12, Nome= "Farneticazione", PuntiDanno = 7, Categoria = Arma.CategoriaPersonaggi.Cultista },
+            new Arma() { IdArma = 13, Nome= "Imprecazione", PuntiDanno = 5, Categoria = Arma.CategoriaPersonaggi.Cultista },
+            new Arma() { IdArma = 14, Nome= "Magia nera", PuntiDanno = 3, Categoria = Arma.CategoriaPersonaggi.Cultista },
+
+            new Arma() { IdArma = 15, Nome= "Arco", PuntiDanno = 7, Categoria = Arma.CategoriaPersonaggi.Orco },
+            new Arma() { IdArma = 16, Nome= "Clava", PuntiDanno = 5, Categoria = Arma.CategoriaPersonaggi.Orco },
+            new Arma() { IdArma = 17, Nome= "Spada rotta", PuntiDanno = 3, Categoria = Arma.CategoriaPersonaggi.Orco },
+            new Arma() { IdArma = 18, Nome= "Mazza chiodata", PuntiDanno = 10, Categoria = Arma.CategoriaPersonaggi.Orco },
+
+            new Arma() { IdArma = 19, Nome= "Alabarda del drago", PuntiDanno = 30, Categoria = Arma.CategoriaPersonaggi.SignoreDelMale },
+            new Arma() { IdArma = 20, Nome= "Divinazione", PuntiDanno = 15, Categoria = Arma.CategoriaPersonaggi.SignoreDelMale },
+            new Arma() { IdArma = 21, Nome= "Fulmine", PuntiDanno = 10, Categoria = Arma.CategoriaPersonaggi.SignoreDelMale },
+            new Arma() { IdArma = 22, Nome= "Fulmine celeste", PuntiDanno = 15, Categoria = Arma.CategoriaPersonaggi.SignoreDelMale },
+            new Arma() { IdArma = 23, Nome= "Tempesta", PuntiDanno = 8, Categoria = Arma.CategoriaPersonaggi.SignoreDelMale },
+            new Arma() { IdArma = 24, Nome= "Tempesta oscura", PuntiDanno = 15, Categoria = Arma.CategoriaPersonaggi.SignoreDelMale },
+
         };
 
         public static List<Mostro> Mostri = new List<Mostro>()
         {
-            new Mostro() {IdMostro = 1, Nome = "CiccioPasticcio", Categoria = Mostro.CategoriaMostro.Orco, Livello=1, IdArma = 3, PuntiVita = 20}
+            new Mostro() {IdMostro = 1, Nome = "CiccioPasticcio", Categoria = Mostro.CategoriaMostro.Orco, Livello=1, IdArma = 17, PuntiVita = 20 },
+            new Mostro() {IdMostro = 2, Nome = "Grog Schiacciateste", Categoria = Mostro.CategoriaMostro.Orco, Livello=2, IdArma = 16, PuntiVita = 40 },
+            new Mostro() {IdMostro = 3, Nome = "Anonimo Cultista", Categoria = Mostro.CategoriaMostro.Cultista, Livello=2, IdArma = 11, PuntiVita = 40},
+            new Mostro() {IdMostro = 4, Nome = "Arbnal il distruttore", Categoria = Mostro.CategoriaMostro.SignoreDelMale, Livello=1, IdArma = 23, PuntiVita = 20}
         };
     }
 }
