@@ -11,7 +11,7 @@ namespace MostriVsEroi.ConsoleApp
 {
     public class Menu
     {
-        private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti());
+        static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti());
 
 
         internal static void Start()
@@ -68,6 +68,7 @@ namespace MostriVsEroi.ConsoleApp
                     switch (choice2)
                     {
                         //gioca
+                            
 
                         //crea nuovo eroe
 
