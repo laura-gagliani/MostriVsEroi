@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//commento valentina
 namespace MostriVsEroi.ConsoleApp
 {
     public class Menu
@@ -83,12 +83,13 @@ namespace MostriVsEroi.ConsoleApp
                 } while (choice2 != 0);
 
             } while (choice1 != 0);
-            // get choice dal menu
-
-            StampaMenuBase();
 
 
-            // switch case
+        }
+
+        private static int GetMenuChoice()
+        {
+            throw new NotImplementedException();
         }
 
         private static User Registrati()
@@ -104,6 +105,8 @@ namespace MostriVsEroi.ConsoleApp
             //se trova un utente con quei dati rende quello,
             //altrimenti dice "errore, inserisci dati corretti" e continua a ciclare finché non trova
             //un utente con i dati richiesti. alla fine rende quello
+            throw new NotImplementedException();
+
         }
 
         private static void StampaMenuBase()
