@@ -11,7 +11,7 @@ namespace MostriVsEroi.ConsoleApp
 {
     public class Menu
     {
-        private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti());
+        static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti(), new MockRepositoryArmi());
 
 
         internal static void Start()
@@ -60,6 +60,7 @@ namespace MostriVsEroi.ConsoleApp
                     }
                     else
                     {
+                        StampaMenuBase();
                         //mostra schermata base
                         //output choice2 (corretto per le possibili scelte base)
 
@@ -68,6 +69,7 @@ namespace MostriVsEroi.ConsoleApp
                     switch (choice2)
                     {
                         //gioca
+                            
 
                         //crea nuovo eroe
 
@@ -111,10 +113,7 @@ namespace MostriVsEroi.ConsoleApp
 
         private static void StampaMenuBase()
         {
-            Console.WriteLine("[1] ...");
-            Console.WriteLine("[2] ...");
-            Console.WriteLine("[1] ...");
-            Console.WriteLine("[1] ...");
+            
         }
     }
 }

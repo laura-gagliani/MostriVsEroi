@@ -17,15 +17,16 @@ namespace MostriVsEroi.Core.Entities
         public int  IdUser { get; set; }
 
         public CategoriaEroe Categoria { get; set; }
+
         public void AssegnaPuntiVita()
         {
             PuntiVita = Livello * 20;
         }
 
-        public void AggiornaLivello()
-        {
-            //
-        }
+        //public void AggiornaLivello()
+        //{
+        //    //
+        //}
 
         public enum CategoriaEroe
         {
