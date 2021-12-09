@@ -19,6 +19,10 @@ namespace MostriVsEroi.ConsoleApp
             // benvenuto
             Console.WriteLine("Benvenuto!");
 
+            //commento inserito nel branch Laura
+            //commento inserito da antonio
+
+
             int choice1 = -1;
             do
             {

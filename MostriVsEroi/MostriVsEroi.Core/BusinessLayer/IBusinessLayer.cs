@@ -8,5 +8,7 @@ namespace MostriVsEroi.Core.BusinessLayer
 {
     public interface IBusinessLayer
     {
+
+        //nuovo metodo
     }
 }
