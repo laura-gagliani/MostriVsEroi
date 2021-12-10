@@ -12,25 +12,29 @@ namespace MostriVsEroi.Core.BusinessLayer
     {
 
         User GetUserByNicknameAndPassword(string nickname, string password);
-        bool AddNewUser(string nickname, string password);
-
         Eroe GetEroeById(int id);
-        Mostro GetRandomMostro(int livello);
 
+        Mostro GetRandomMostro(int livelloEroe);
 
-        int CalcolaEsitoPartita(Eroe e, Mostro m);
-         
-        Eroe AggiornaEroe(int idEroe, int punteggioPartita);
-
-        bool AddNewEroe(Eroe nuovoEroe);
-        bool DeleteEroe(Eroe eroe);
-        bool AddNewMostro(Mostro nuovoMostro);
 
         List<Arma> GetArmiByCategoria(CategoriaPersonaggi categoria);
         List<Eroe> GetClassifica();
         List<Eroe> GetEroeByIdUser(int idUser);
-        List<User> GetUtenti();
-        bool AggiornaUtente(int IdUtenteDaAggiornare);
+        List<User> GetUsers();
+
+
+
+        int CalcolaEsitoPartita(Eroe e, Mostro m);
+        Eroe AggiornaEroe(int idEroe, int punteggioPartita);
+
+
+        bool AddNewEroe(Eroe nuovoEroe);
+        //Meglio eliminare per id per una questione di migliorare la sintassi
+        bool DeleteEroe(Eroe eroeDaEliminare);
+        bool AddNewMostro(Mostro nuovoMostro);
+
+        bool AddNewUser(string nickname, string password);
+        bool AggiornaUtente(int idUtenteDaAggiornare);
 
 
     }
