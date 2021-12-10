@@ -11,7 +11,7 @@ namespace MostriVsEroi.ConsoleApp
 {
     public class Menu
     {
-        static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti());
+        static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti(), new MockRepositoryArmi());
 
         internal static void Start()
         {
@@ -57,6 +57,7 @@ namespace MostriVsEroi.ConsoleApp
                     }
                     else
                     {
+
                         choice2 = StampaMenuBase();
                     }
 
@@ -481,6 +482,7 @@ namespace MostriVsEroi.ConsoleApp
         }
         private static void GiocaPartita(int id)
         {
+
             bool verify = false;
             Console.WriteLine("Stai iniziando una nuova partita scegli il tuo eroe");
             //Ottengo la lista eroi di un dato utente grazie al metodo qui sotto
@@ -534,6 +536,7 @@ namespace MostriVsEroi.ConsoleApp
             }
             else
                 Console.WriteLine("Non hai ancora nessun eroe. Aggiungine almeno uno per poter giocare!");
+
         }
     }
 }

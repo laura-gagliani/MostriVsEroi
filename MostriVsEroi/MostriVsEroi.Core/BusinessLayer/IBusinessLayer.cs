@@ -13,6 +13,7 @@ namespace MostriVsEroi.Core.BusinessLayer
 
         User GetUserByNicknameAndPassword(string nickname, string password);
         Eroe GetEroeById(int id);
+
         Mostro GetRandomMostro(int livelloEroe);
 
 
@@ -20,6 +21,7 @@ namespace MostriVsEroi.Core.BusinessLayer
         List<Eroe> GetClassifica();
         List<Eroe> GetEroeByIdUser(int idUser);
         List<User> GetUsers();
+
 
 
         int CalcolaEsitoPartita(Eroe e, Mostro m);
@@ -30,8 +32,10 @@ namespace MostriVsEroi.Core.BusinessLayer
         //Meglio eliminare per id per una questione di migliorare la sintassi
         bool DeleteEroe(Eroe eroeDaEliminare);
         bool AddNewMostro(Mostro nuovoMostro);
+
         bool AddNewUser(string nickname, string password);
         bool AggiornaUtente(int idUtenteDaAggiornare);
+
 
     }
 }
