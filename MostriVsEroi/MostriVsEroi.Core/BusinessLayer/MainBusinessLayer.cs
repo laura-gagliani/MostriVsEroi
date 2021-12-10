@@ -26,18 +26,23 @@ namespace MostriVsEroi.Core.BusinessLayer
 
         public bool AddNewEroe(Eroe nuovoEroe)
         {
+
             return repositoryEroi.Add(nuovoEroe); 
             
+
         }
 
         public bool AddNewMostro(Mostro nuovoMostro)
         {
+
             return repositoryMostri.Add(nuovoMostro);
             
+
         }
 
         public bool AddNewUser(string nickname, string password)
         {
+
             User nuovoUser= new User();
             bool aggiunta = false;
             nuovoUser.Nickname=nickname;
@@ -49,6 +54,7 @@ namespace MostriVsEroi.Core.BusinessLayer
             }
             return aggiunta;
 
+
         }
 
         public Eroe AggiornaEroe(int idEroe, int punteggioPartita)
@@ -56,7 +62,9 @@ namespace MostriVsEroi.Core.BusinessLayer
             throw new NotImplementedException();
         }
 
+
         public bool AggiornaUtente(int IdUtenteDaAggiornare)
+
         {
             throw new NotImplementedException();
         }
@@ -68,30 +76,38 @@ namespace MostriVsEroi.Core.BusinessLayer
 
         public bool DeleteEroe(Eroe eroe)
         {
+
             return repositoryEroi.Delete(eroe);
             
+
         }
 
         public List<Arma> GetArmiByCategoria(Arma.CategoriaPersonaggi categoria)
         {
+
             List<Arma> armi = repositoryArmi.GetAll();
             List<Arma> armiByCategoria= armi.Where(a=> a.Equals(categoria)).ToList();
             return armiByCategoria;
+
         }
 
         public List<Eroe> GetClassifica()
         {
+
             List<Eroe> eroiTotali = repositoryEroi.GetAll();
             List<Eroe> classificaEroi= eroiTotali.OrderBy(e=>e.Livello).OrderBy(e=>e.PuntiEsperienza).ToList();
             return classificaEroi;
+
         }
 
         public Eroe GetEroeById(int id)
         {
+
             List<Eroe> eroi = repositoryEroi.GetAll();
 
             Eroe eroeScelto=eroi.Where(e=> e.IdEroe== id).FirstOrDefault();
             return eroeScelto;
+
         }
 
         public List<Eroe> GetEroeByIdUser(int idUser)
@@ -117,10 +133,12 @@ namespace MostriVsEroi.Core.BusinessLayer
             Mostro mostroEstratto = mostriTot.Where(m => m.IdMostro == idMostroScelto).FirstOrDefault();
             return mostroEstratto;
 
+
         }
 
         public User GetUserByNicknameAndPassword(string nickname, string password)
         {
+
             List<User> utenti = repositoryUtenti.GetAll();
             User utenteSelez = utenti.Where((u => u.Nickname == nickname && u.Password == password)).FirstOrDefault();
             return utenteSelez;

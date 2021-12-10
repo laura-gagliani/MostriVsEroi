@@ -14,6 +14,7 @@ namespace MostriVsEroi.Core.BusinessLayer
         User GetUserByNicknameAndPassword(string nickname, string password);
         Eroe GetEroeById(int id);
 
+
         Mostro GetRandomMostro(int livelloEroe);
 
 
@@ -35,6 +36,12 @@ namespace MostriVsEroi.Core.BusinessLayer
 
         bool AddNewUser(string nickname, string password);
         bool AggiornaUtente(int idUtenteDaAggiornare);
+
+        List<User> GetUsers();
+
+        bool AggiornaUtente(int idUtenteDaAggiornare); //prende l'id utente e rende bool
+        //dentro il metodo l'utente con quell'id viene aggiornato -> il flag Admin viene messo a true
+        // l'utente aggiornato viene passato al repository per la registrazione
 
 
     }

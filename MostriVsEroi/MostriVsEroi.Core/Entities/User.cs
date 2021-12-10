@@ -15,5 +15,14 @@ namespace MostriVsEroi.Core.Entities
 
         public List<Eroe> Eroi { get; set; } = new List<Eroe>();
 
+        public override string ToString()
+        {
+            if (Admin)
+            {
+                return $"Id Utente: {UserId} - Nickame: {Nickname} - ADMIN";
+            }
+            else 
+                return $"Id Utente: {UserId} - Nickame: {Nickname}";
+        }
     }
 }

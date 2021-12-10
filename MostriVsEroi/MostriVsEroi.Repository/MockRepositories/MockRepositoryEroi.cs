@@ -12,22 +12,54 @@ namespace MostriVsEroi.Repository.MockRepositories
     {
         public bool Add(Eroe item)
         {
-            throw new NotImplementedException();
+            int maxId = GetAll().Select(e => e.IdEroe).Max();
+            item.IdEroe = maxId++;
+
+            int countIniziale = InMemoryStorage.Eroi.Count;
+            InMemoryStorage.Eroi.Add(item);
+
+            if (InMemoryStorage.Eroi.Count == countIniziale++)
+                return true;
+            else
+                return false;
         }
+
+        
 
         public bool Delete(Eroe item)
         {
-            throw new NotImplementedException();
+            int countIniziale = InMemoryStorage.Eroi.Count;
+            InMemoryStorage.Eroi.Remove(item);
+
+            if (InMemoryStorage.Eroi.Count == countIniziale--)
+                return true;
+            else
+                return false;
         }
 
         public List<Eroe> GetAll(Func<Eroe, bool> filter = null)
         {
-            throw new NotImplementedException();
+            if (filter == null)
+                return InMemoryStorage.Eroi;
+            else 
+                return InMemoryStorage.Eroi.Where(filter).ToList(); 
         }
 
         public bool Update(Eroe item)
         {
-            throw new NotImplementedException();
+            //mi sta passando l'eroe già modificato -> item
+            int index = -1;
+
+            Eroe oldItem = GetAll(e => e.IdEroe == item.IdEroe).SingleOrDefault();
+            index = InMemoryStorage.Eroi.IndexOf(oldItem);
+
+            if (index != -1)
+            {
+                InMemoryStorage.Eroi[index] = item;
+                return true;
+            }
+
+            return false;
         }
     }
 }

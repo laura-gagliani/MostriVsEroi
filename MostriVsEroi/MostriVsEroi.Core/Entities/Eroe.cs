@@ -34,6 +34,10 @@ namespace MostriVsEroi.Core.Entities
             Mago
         }
 
+        public override string ToString()
+        {
+            return $"Giocatore: {IdUser} - ID Eroe: {IdEroe} - Classe: {Categoria} - Nome: {Nome}\t Livello: {Livello} - Punti Vita: {PuntiVita} - XP: {PuntiEsperienza}";
+        }
 
     }
 }
