@@ -13,6 +13,7 @@ namespace MostriVsEroi.ConsoleApp
     {
         static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti(), new MockRepositoryArmi());
 
+        //Commento Antonio
 
 
         internal static void Start()
