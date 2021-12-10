@@ -27,7 +27,7 @@ namespace MostriVsEroi.ConsoleApp
 
             //commento inserito nel branch Laura
             //commento inserito da antonio
-
+            int choice2 = -1;
             int choice1 = -1;
             do
             {
@@ -38,11 +38,12 @@ namespace MostriVsEroi.ConsoleApp
                 choice1 = GetMenuChoice();
 
                 User utente = new User();
-
+                choice2 = -1;
                 switch (choice1)
                 {
                     case 0:
                         Console.WriteLine("Alla prossima avventura!");
+                        choice2 = 0;
                         break;
                     case 1:
                         utente = Autenticati();
@@ -53,10 +54,9 @@ namespace MostriVsEroi.ConsoleApp
                             utente = Autenticati();
                         break;
                 }
-
-                int choice2 = -1;
-
-                do
+                
+                //scelta menu admin o menu user
+                while(choice2 != 0 && choice1 !=0)
                 {
                     if (utente.Admin)
                     {
@@ -89,13 +89,13 @@ namespace MostriVsEroi.ConsoleApp
                             utente = null;
                             break;
                     }
-                } while (choice2 != 0);
+                };
 
             } while (choice1 != 0);
         }
         private static void MostraClassifica()
         {
-            int classifica = 0;
+            int classifica = 1;
             List<Eroe> classificaEroi = bl.GetClassifica();
             List<User> users = bl.GetUtenti();
             if (classificaEroi != null)
@@ -104,7 +104,7 @@ namespace MostriVsEroi.ConsoleApp
                 {
                     foreach (User u in users)
                     {
-                        if (u.UserId == e.IdUser && classifica < 10)
+                        if (u.UserId == e.IdUser && classifica <= 10)
                             Console.WriteLine($"{classifica++}° Classificato {u.Nickname}, con il suo " +
                                 $"{e.Categoria} conosciuto come {e.Nome}");
                     }
@@ -222,6 +222,8 @@ namespace MostriVsEroi.ConsoleApp
             {
                 Console.WriteLine("Inserisci un livello da 1 a 5");
                 if (int.TryParse(Console.ReadLine(), out int livelloMostro) && livelloMostro >= 1 && livelloMostro <= 5)
+                {
+                    verify = true;
                     switch (livelloMostro)
                     {
                         case 1:
@@ -245,6 +247,7 @@ namespace MostriVsEroi.ConsoleApp
                             newMostro.PuntiVita = 100;
                             break;
                     }
+                }
             } while (!verify);
             if (bl.AddNewMostro(newMostro))
                 Console.WriteLine("Il mostro è stato creato!");
@@ -264,24 +267,30 @@ namespace MostriVsEroi.ConsoleApp
             do
             {
                 if (int.TryParse(Console.ReadLine(), out int idEroe))
+                {
                     foreach (Eroe e in eroi)
                     {
                         if (e.IdEroe == idEroe)
                             verifyEroe = true;
                     }
+                }
                 if (verifyEroe)
                 {
-                    Eroe ereoDaEliminare = bl.GetEroeById(idEroe);
-                    if (bl.DeleteEroe(ereoDaEliminare))
+                    Eroe eroeDaEliminare = bl.GetEroeById(idEroe);
+                    if (bl.DeleteEroe(eroeDaEliminare))
                     {
                         Console.WriteLine("Eliminazione avvenuta con successo");
                         verify = true;
                     }
                     else
+                    {
                         Console.WriteLine("C'è stato un problema nell'eliminazione");
+                    }
                 }
                 else
+                {
                     Console.WriteLine("Inserisci un id corretto");
+                }
             } while (!verify);
         }
         private static void CreaNuovoEroe(int userId)
@@ -308,13 +317,14 @@ namespace MostriVsEroi.ConsoleApp
                         }
                         Console.WriteLine("Inserisci l'id dell'arma:");
                         if (int.TryParse(Console.ReadLine(), out int choiceArma))
-                            if (choiceArma == armi[0].IdArma)
+                            foreach(Arma a in armi)
                             {
-                                verify = true;
-                                newEroe.IdArma = choiceArma;
+                                if (choiceArma == a.IdArma)
+                                {
+                                    verify = true;
+                                    newEroe.IdArma = choiceArma;
+                                }
                             }
-                            else
-                                verify = false;
                         else
                             verify = false;
 
@@ -331,13 +341,14 @@ namespace MostriVsEroi.ConsoleApp
                         }
                         //verifica scelta
                         if (int.TryParse(Console.ReadLine(), out int choiceArma))
-                            if (choiceArma == armi[0].IdArma)
+                            foreach(Arma a in armi)
                             {
-                                newEroe.IdArma = choiceArma;
-                                verify = true;
+                                if (choiceArma == a.IdArma)
+                                {
+                                    verify = true;
+                                    newEroe.IdArma = choiceArma;
+                                }
                             }
-                            else
-                                verify = false;
                         else
                             verify = false;
                     }
@@ -502,7 +513,7 @@ namespace MostriVsEroi.ConsoleApp
                 foreach (Eroe e in eroi)
                 {
                     //Stampo l'elenco di eroi per un dato utente
-                    Console.WriteLine($"[{e.IdEroe}] {e}\n");
+                    Console.WriteLine($"[{e.IdEroe}] {e.Nome}\n");
                 }
                 //Proviamo il parse
                 if (int.TryParse(Console.ReadLine(), out int choice))
@@ -518,6 +529,7 @@ namespace MostriVsEroi.ConsoleApp
                     {
                         Console.WriteLine("Preparati, inzia la partita!");
                         Eroe eroe = bl.GetEroeById(choice);
+                        int lvlPrecedente = eroe.Livello;
                         //Prendiamo randomicamento il mostro dal metodo 
                         Mostro mostro = bl.GetRandomMostro(eroe.Livello);
 
@@ -530,20 +542,18 @@ namespace MostriVsEroi.ConsoleApp
                         //aggiorniamo i dati dell'eroe con il quale l'utente ha voluto giocare
                         Eroe eroeAggiornato = bl.AggiornaEroe(eroe, punteggioPartita);
                         //Infine stampiamo i dati dell'eroe aggiornato
-                        if (eroe.Livello < eroeAggiornato.Livello)
+                        if (lvlPrecedente < eroeAggiornato.Livello)
                         {
                             Console.WriteLine("Il tuo eroe è salito di livello!\n" +
-                                                $"{eroeAggiornato}");
-                            if (eroeAggiornato.Livello >= 3)
-                            {
+                                                  $"{eroeAggiornato}");
+                            if(eroeAggiornato.Livello >= 3)
                                 bl.AggiornaUtente(id);
-                                Console.WriteLine("Il tuo eroe è arrivato al 3° livello. Sei stato promosso ad Admin!");
-                            }
-
                         }
                         else
+                        { 
                             Console.WriteLine("Ecco le statistiche del tuo personaggio aggiornate \n" +
                                                 $"{eroeAggiornato}");
+                        }
                     }
                 }
                 else

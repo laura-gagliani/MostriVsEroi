@@ -61,16 +61,44 @@ namespace MostriVsEroi.Core.BusinessLayer
         {
             eroe.PuntiEsperienza += punteggioPartita;
             repositoryEroi.Update(eroe);
-
+            if (eroe.PuntiEsperienza > 29 && eroe.Livello == 1)
+            {
+                eroe.Livello = 2;
+                eroe.PuntiEsperienza = 0;
+                eroe.PuntiVita = 40;
+            }
+                if (eroe.PuntiEsperienza > 59 && eroe.Livello == 2)
+                {
+                    eroe.Livello = 3;
+                    eroe.PuntiEsperienza = 0;
+                    eroe.PuntiVita = 60;
+                }
+                    if (eroe.PuntiEsperienza > 89 && eroe.Livello == 3)
+                    {
+                        eroe.Livello = 4;
+                        eroe.PuntiEsperienza = 0;
+                        eroe.PuntiVita = 80;
+                    }
+                        if (eroe.PuntiEsperienza > 119 && eroe.Livello == 4)
+                        {
+                            eroe.Livello = 5;
+                            eroe.PuntiEsperienza = 0;
+                            eroe.PuntiVita = 100;
+                        }
             return eroe;
-
         }
 
 
         public bool AggiornaUtente(int IdUtenteDaAggiornare)
-
         {
-            throw new NotImplementedException();
+            User user = repositoryUtenti.GetAll().Where(u => u.UserId == IdUtenteDaAggiornare).FirstOrDefault();
+            Eroe eroe = repositoryEroi.GetAll().Where(e => e.Livello >= 3 && e.IdUser == IdUtenteDaAggiornare).FirstOrDefault();
+            
+            if (eroe == null)
+                user.Admin = false;
+            else
+                user.Admin = true;
+            return repositoryUtenti.Update(user);
         }
 
         public int CalcolaEsitoPartita(Eroe e, Mostro m)

@@ -37,9 +37,9 @@ namespace MostriVsEroi.Repository.MockRepositories
             InMemoryStorage.Eroi.Remove(item);
 
             if (InMemoryStorage.Eroi.Count == countIniziale--)
-                return true;
-            else
                 return false;
+            else
+                return true;
         }
 
         public List<Eroe> GetAll(Func<Eroe, bool> filter = null)
