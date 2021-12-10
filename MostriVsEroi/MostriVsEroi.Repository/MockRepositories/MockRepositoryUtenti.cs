@@ -13,15 +13,20 @@ namespace MostriVsEroi.Repository.MockRepositories
         public bool Add(User item)
         {
             int maxId = GetAll().Select(u => u.UserId).Max();
-            item.UserId = maxId++;
+            maxId = maxId + 1;
+            item.UserId = maxId;
 
             int countIniziale = InMemoryStorage.Utenti.Count;
             InMemoryStorage.Utenti.Add(item);
+            int countFinale = InMemoryStorage.Utenti.Count;
 
-            if (InMemoryStorage.Utenti.Count == countIniziale++)
-                return true;
-            else
+            if (countFinale == countIniziale)
+            {
                 return false;
+            }
+
+            else
+                return true;
         }
 
         public bool Delete(User item)

@@ -20,9 +20,9 @@ namespace MostriVsEroi.ConsoleApp
             // benvenuto
             Console.WriteLine("Benvenuto!");
 
-            
 
-            
+
+
 
             //commento inserito nel branch Laura
             //commento inserito da antonio
@@ -104,7 +104,7 @@ namespace MostriVsEroi.ConsoleApp
                     foreach (User u in users)
                     {
                         if (u.UserId == e.IdUser && classifica < 10)
-                            Console.WriteLine($"{classifica++}° Classificato {u.Nickname}, con il suo" +
+                            Console.WriteLine($"{classifica++}° Classificato {u.Nickname}, con il suo " +
                                 $"{e.Categoria} conosciuto come {e.Nome}");
                     }
                 }
@@ -116,15 +116,15 @@ namespace MostriVsEroi.ConsoleApp
         {
             bool verifyArma = false;
             bool verify = false;
-            
+
             Mostro newMostro = new Mostro();
             //ciclo nickname
             do
             {
                 Console.WriteLine("Scegli un nome per il mostro");
                 string name = Console.ReadLine();
-                if(name.Length > 0)
-                    verify = true;  
+                if (name.Length > 0)
+                    verify = true;
 
             } while (!verify);
             verify = false;
@@ -214,14 +214,14 @@ namespace MostriVsEroi.ConsoleApp
                 }
                 else
                     Console.WriteLine("Scegli una categoria dall'elenco");
-            }while (!verify);
+            } while (!verify);
             verify = false;
             //ciclo per livelli e hp
             do
             {
                 Console.WriteLine("Inserisci un livello da 1 a 5");
                 if (int.TryParse(Console.ReadLine(), out int livelloMostro) && livelloMostro >= 1 && livelloMostro <= 5)
-                    switch(livelloMostro)
+                    switch (livelloMostro)
                     {
                         case 1:
                             newMostro.Livello = livelloMostro;
@@ -256,16 +256,16 @@ namespace MostriVsEroi.ConsoleApp
             bool verifyEroe = false;
             List<Eroe> eroi = bl.GetEroeByIdUser(userId);
             Console.WriteLine("Quale eroe dalla tua lista vuoi eliminare?");
-            foreach( Eroe e in eroi)
+            foreach (Eroe e in eroi)
             {
                 Console.WriteLine($"[{e.IdEroe}] {e}\n");
             }
             do
             {
                 if (int.TryParse(Console.ReadLine(), out int idEroe))
-                    foreach(Eroe e in eroi)
+                    foreach (Eroe e in eroi)
                     {
-                        if(e.IdEroe == idEroe)
+                        if (e.IdEroe == idEroe)
                             verifyEroe = true;
                     }
                 if (verifyEroe)
@@ -278,7 +278,7 @@ namespace MostriVsEroi.ConsoleApp
                     }
                     else
                         Console.WriteLine("C'è stato un problema nell'eliminazione");
-                } 
+                }
                 else
                     Console.WriteLine("Inserisci un id corretto");
             } while (!verify);
@@ -291,7 +291,7 @@ namespace MostriVsEroi.ConsoleApp
             Eroe newEroe = new Eroe();
             do
             {
-                Console.WriteLine(  "Quale classe vuoi attribuire al tuo personaggio? \n" +
+                Console.WriteLine("Quale classe vuoi attribuire al tuo personaggio? \n" +
                                     "[1] Guerriero \n" +
                                     "[2] Mago \n");
                 if (int.TryParse(Console.ReadLine(), out int choice))
@@ -301,10 +301,11 @@ namespace MostriVsEroi.ConsoleApp
                         newEroe.Categoria = Eroe.CategoriaEroe.Guerriero;
                         Console.WriteLine("Scegli l'arma");
                         List<Arma> armi = bl.GetArmiByCategoria(Arma.CategoriaPersonaggi.Guerriero);
-                        foreach(Arma a in armi)
+                        foreach (Arma a in armi)
                         {
-                            Console.WriteLine($"[{a.IdArma} {a} \n");
+                            Console.WriteLine(a);
                         }
+                        Console.WriteLine("Inserisci l'id dell'arma:");
                         if (int.TryParse(Console.ReadLine(), out int choiceArma))
                             if (choiceArma == armi[0].IdArma)
                             {
@@ -342,18 +343,20 @@ namespace MostriVsEroi.ConsoleApp
                     else
                         verify = false;
                 }
-            }while (!verify); //Fine while scelta categoria ed arma
+            } while (!verify); //Fine while scelta categoria ed arma
             verify = false;
             do
             {
                 Console.WriteLine("Inserisci il nome del tuo eroe\n");
-                if (Console.ReadLine().Length > 0)
+                newEroe.Nome = Console.ReadLine();
+
+                if (newEroe.Nome.Length == 0)
                 {
-                    Console.WriteLine("Nome inserito non valido. Riprova");
+                    Console.WriteLine("Nome inserito non valido. Riprova");                    
                 }
                 else
                 {
-                    newEroe.Nome = Console.ReadLine();
+                    
                     verify = true;
                 }
             } while (!verify);//Fine scelta nome Eroe
@@ -376,8 +379,8 @@ namespace MostriVsEroi.ConsoleApp
                     //verifico che il dato dell'utente sia compreso tra 0 e 2
                     if (choice >= 0 && choice <= 2)
                         verify = true;
-                    else 
-                        verify = false;  
+                    else
+                        verify = false;
                 }
                 else
                     verify = false;
@@ -390,7 +393,7 @@ namespace MostriVsEroi.ConsoleApp
             string nickname = Console.ReadLine();
             Console.WriteLine("Inserisci la password che vuoi utilizzare \n");
             string password = Console.ReadLine();
-            return bl.AddNewUser(nickname, password); 
+            return bl.AddNewUser(nickname, password);
         }
         private static User Autenticati()
         {
@@ -403,17 +406,17 @@ namespace MostriVsEroi.ConsoleApp
                 do
                 {
                     Console.WriteLine("Inserisci il tuo nome utente \n");
-                    if (Console.ReadLine().Length > 0)
+                    nickname = Console.ReadLine();
+                    if (nickname.Length > 0)
                     {
-                        nickname = Console.ReadLine();
                         Console.WriteLine("Inserisci la password");
-                        if (Console.ReadLine().Length > 0)
+                        password = Console.ReadLine();
+                        if (password.Length > 0)
                         {
-                            password = Console.ReadLine();
                             verificato = true;
                         }
                     }
-                }while(!verificato);
+                } while (!verificato);
 
                 user = bl.GetUserByNicknameAndPassword(nickname, password);
                 if (user != null)
@@ -435,23 +438,23 @@ namespace MostriVsEroi.ConsoleApp
             //Apro un ciclo do/while per tenere l'utente nel menu finchè non mi darà una scelta che voglio io
             do
             {
-             //stampo a video il menu
-            Console.WriteLine(  "Menu User \n" +
-                                "[1] Gioca \n" +
-                                "[2] Crea Nuovo Eroe \n" +
-                                "[3] Elimina Eroe \n" +
-                                "[0] Logout \n");
+                //stampo a video il menu
+                Console.WriteLine("Menu User \n" +
+                                    "[1] Gioca \n" +
+                                    "[2] Crea Nuovo Eroe \n" +
+                                    "[3] Elimina Eroe \n" +
+                                    "[0] Logout \n");
                 //provo a parsare il contenuto dato dall'utente
-            if (int.TryParse(Console.ReadLine(), out  choice))
-            {
-                    //verifico che il dato dell'utente sia compreso tra 0 e 3
-                if (choice >= 0 && choice <= 3)
+                if (int.TryParse(Console.ReadLine(), out choice))
                 {
-                    verify = true;
+                    //verifico che il dato dell'utente sia compreso tra 0 e 3
+                    if (choice >= 0 && choice <= 3)
+                    {
+                        verify = true;
+                    }
                 }
-            }
-            else
-                verify = false;
+                else
+                    verify = false;
 
 
 
@@ -516,10 +519,15 @@ namespace MostriVsEroi.ConsoleApp
                         Eroe eroe = bl.GetEroeById(choice);
                         //Prendiamo randomicamento il mostro dal metodo 
                         Mostro mostro = bl.GetRandomMostro(eroe.Livello);
+
+                        Console.WriteLine($"\nSfida tra l'eroe {eroe.Nome} e {mostro.Nome}...");
                         //Calcoliamo il punteggio della partita
                         int punteggioPartita = bl.CalcolaEsitoPartita(eroe, mostro);
+
+                        Console.WriteLine($"La partita è terminata! Punteggio finale: {punteggioPartita}");
+
                         //aggiorniamo i dati dell'eroe con il quale l'utente ha voluto giocare
-                        Eroe eroeAggiornato = bl.AggiornaEroe(choice, punteggioPartita);
+                        Eroe eroeAggiornato = bl.AggiornaEroe(eroe, punteggioPartita);
                         //Infine stampiamo i dati dell'eroe aggiornato
                         if (eroe.Livello < eroeAggiornato.Livello)
                         {
@@ -530,7 +538,7 @@ namespace MostriVsEroi.ConsoleApp
                                 bl.AggiornaUtente(id);
                                 Console.WriteLine("Il tuo eroe è arrivato al 3° livello. Sei stato promosso ad Admin!");
                             }
-                                
+
                         }
                         else
                             Console.WriteLine("Ecco le statistiche del tuo personaggio aggiornate \n" +

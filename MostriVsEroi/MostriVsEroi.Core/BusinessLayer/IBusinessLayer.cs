@@ -26,7 +26,7 @@ namespace MostriVsEroi.Core.BusinessLayer
 
 
         int CalcolaEsitoPartita(Eroe e, Mostro m);
-        Eroe AggiornaEroe(int idEroe, int punteggioPartita);
+        Eroe AggiornaEroe(Eroe eroe, int punteggioPartita);
 
 
         bool AddNewEroe(Eroe nuovoEroe);
@@ -41,6 +41,9 @@ namespace MostriVsEroi.Core.BusinessLayer
         bool AggiornaUtente(int idUtenteDaAggiornare); //prende l'id utente e rende bool
         //dentro il metodo l'utente con quell'id viene aggiornato -> il flag Admin viene messo a true
         // l'utente aggiornato viene passato al repository per la registrazione
+
+
+        Arma GetArmaById(int id);
 
 
     }
