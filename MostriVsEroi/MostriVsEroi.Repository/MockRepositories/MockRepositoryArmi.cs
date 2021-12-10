@@ -22,10 +22,12 @@ namespace MostriVsEroi.Repository.MockRepositories
 
         public List<Arma> GetAll(Func<Arma, bool> filter = null)
         {
+
             if (filter == null)
                 return InMemoryStorage.Armi;
             else
                 return InMemoryStorage.Armi.Where(filter).ToList();
+
         }
 
         public bool Update(Arma item)

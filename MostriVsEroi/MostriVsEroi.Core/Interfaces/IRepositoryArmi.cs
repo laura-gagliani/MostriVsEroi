@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace MostriVsEroi.Core.Interfaces
 {
-    public interface IRepositoryArmi : IRepository<Arma>
+
+    public interface IRepositoryArmi: IRepository<Arma>
     {
     }
 }

@@ -26,17 +26,35 @@ namespace MostriVsEroi.Core.BusinessLayer
 
         public bool AddNewEroe(Eroe nuovoEroe)
         {
-            throw new NotImplementedException();
+
+            return repositoryEroi.Add(nuovoEroe); 
+            
+
         }
 
         public bool AddNewMostro(Mostro nuovoMostro)
         {
-            throw new NotImplementedException();
+
+            return repositoryMostri.Add(nuovoMostro);
+            
+
         }
 
         public bool AddNewUser(string nickname, string password)
         {
-            throw new NotImplementedException();
+
+            User nuovoUser= new User();
+            bool aggiunta = false;
+            nuovoUser.Nickname=nickname;
+            nuovoUser.Password=password;
+            if (repositoryUtenti.Add(nuovoUser) == true)
+            {
+                aggiunta = true;
+
+            }
+            return aggiunta;
+
+
         }
 
         public Eroe AggiornaEroe(int idEroe, int punteggioPartita)
@@ -44,7 +62,9 @@ namespace MostriVsEroi.Core.BusinessLayer
             throw new NotImplementedException();
         }
 
-        public bool AggiornaUtente(int idUtenteDaAggiornare)
+
+        public bool AggiornaUtente(int IdUtenteDaAggiornare)
+
         {
             throw new NotImplementedException();
         }
@@ -56,47 +76,78 @@ namespace MostriVsEroi.Core.BusinessLayer
 
         public bool DeleteEroe(Eroe eroe)
         {
-            throw new NotImplementedException();
+
+            return repositoryEroi.Delete(eroe);
+            
+
         }
 
         public List<Arma> GetArmiByCategoria(Arma.CategoriaPersonaggi categoria)
         {
-            throw new NotImplementedException();
+
+            List<Arma> armi = repositoryArmi.GetAll();
+            List<Arma> armiByCategoria= armi.Where(a=> a.Equals(categoria)).ToList();
+            return armiByCategoria;
+
         }
 
         public List<Eroe> GetClassifica()
         {
-            throw new NotImplementedException();
+
+            List<Eroe> eroiTotali = repositoryEroi.GetAll();
+            List<Eroe> classificaEroi= eroiTotali.OrderBy(e=>e.Livello).OrderBy(e=>e.PuntiEsperienza).ToList();
+            return classificaEroi;
+
         }
 
         public Eroe GetEroeById(int id)
         {
-            throw new NotImplementedException();
+
+            List<Eroe> eroi = repositoryEroi.GetAll();
+
+            Eroe eroeScelto=eroi.Where(e=> e.IdEroe== id).FirstOrDefault();
+            return eroeScelto;
+
         }
 
         public List<Eroe> GetEroeByIdUser(int idUser)
         {
-            throw new NotImplementedException();
+            List<Eroe> eroiTot=repositoryEroi.GetAll();
+            List<Eroe> eroiByIdUser=eroiTot.Where(e=>e.IdUser== idUser).ToList();
+            return eroiByIdUser;
         }
 
-        public Mostro GetRandomMostro()
+        public Mostro GetRandomMostro(int livello) //va corretto
         {
-            throw new NotImplementedException();
-        }
+            List<int> codiciMostri = new List<int>();
+            List<Mostro> mostriTot = repositoryMostri.GetAll();
+           foreach (Mostro m in mostriTot)
+            {
+                if (m.Livello <= livello)
+                {
+                    codiciMostri.Add(m.IdMostro);
+                }
+            }
+            Random randomChoice = new Random();
+            int idMostroScelto=randomChoice.Next(codiciMostri.Min(),(codiciMostri.Max()+1));
+            Mostro mostroEstratto = mostriTot.Where(m => m.IdMostro == idMostroScelto).FirstOrDefault();
+            return mostroEstratto;
 
-        public Mostro GetRandomMostro(int livelloEroe)
-        {
-            throw new NotImplementedException();
+
         }
 
         public User GetUserByNicknameAndPassword(string nickname, string password)
         {
-            throw new NotImplementedException();
+
+            List<User> utenti = repositoryUtenti.GetAll();
+            User utenteSelez = utenti.Where((u => u.Nickname == nickname && u.Password == password)).FirstOrDefault();
+            return utenteSelez;
+        
         }
 
-        public List<User> GetUsers()
+        public List<User> GetUtenti()
         {
-            throw new NotImplementedException();
+            return repositoryUtenti.GetAll();
         }
     }
 }
