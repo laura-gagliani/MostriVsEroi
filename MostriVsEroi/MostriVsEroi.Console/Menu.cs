@@ -96,7 +96,7 @@ namespace MostriVsEroi.ConsoleApp
         {
             int classifica = 0;
             List<Eroe> classificaEroi = bl.GetClassifica();
-            List<User> users = bl.GetUsers();
+            List<User> users = bl.GetUtenti();
             if (classificaEroi != null)
             {
                 foreach (Eroe e in classificaEroi)

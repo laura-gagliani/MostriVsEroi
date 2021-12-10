@@ -145,6 +145,8 @@ namespace MostriVsEroi.Core.BusinessLayer
         
         }
 
+        
+
         public List<User> GetUtenti()
         {
             return repositoryUtenti.GetAll();

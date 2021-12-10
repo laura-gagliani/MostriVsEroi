@@ -21,7 +21,7 @@ namespace MostriVsEroi.Core.BusinessLayer
         List<Arma> GetArmiByCategoria(CategoriaPersonaggi categoria);
         List<Eroe> GetClassifica();
         List<Eroe> GetEroeByIdUser(int idUser);
-        List<User> GetUsers();
+        List<User> GetUtenti();
 
 
 
@@ -35,9 +35,8 @@ namespace MostriVsEroi.Core.BusinessLayer
         bool AddNewMostro(Mostro nuovoMostro);
 
         bool AddNewUser(string nickname, string password);
-        bool AggiornaUtente(int idUtenteDaAggiornare);
 
-        List<User> GetUsers();
+        
 
         bool AggiornaUtente(int idUtenteDaAggiornare); //prende l'id utente e rende bool
         //dentro il metodo l'utente con quell'id viene aggiornato -> il flag Admin viene messo a true
