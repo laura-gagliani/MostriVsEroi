@@ -542,12 +542,24 @@ namespace MostriVsEroi.ConsoleApp
                         //aggiorniamo i dati dell'eroe con il quale l'utente ha voluto giocare
                         Eroe eroeAggiornato = bl.AggiornaEroe(eroe, punteggioPartita);
                         //Infine stampiamo i dati dell'eroe aggiornato
+                        List<User> users = bl.GetUtenti();
+                        User userLoggato = new User();
+                        foreach (User u in users)
+                        {
+                            if(u.UserId == id)
+                            {
+                                userLoggato = u;
+                            }
+                        }
                         if (lvlPrecedente < eroeAggiornato.Livello)
                         {
                             Console.WriteLine("Il tuo eroe è salito di livello!\n" +
                                                   $"{eroeAggiornato}");
-                            if(eroeAggiornato.Livello >= 3)
+                            if (eroeAggiornato.Livello >= 3 && !userLoggato.Admin)
+                            {
                                 bl.AggiornaUtente(id);
+                                Console.WriteLine("Un tuo eroe è salito al livello 3! Sei stato promosso admin");
+                            }
                         }
                         else
                         { 
