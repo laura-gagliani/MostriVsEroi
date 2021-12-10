@@ -22,5 +22,10 @@ namespace MostriVsEroi.Core.Entities
             SignoreDelMale
 
         }
+
+        public override string ToString()
+        {
+            return $"Id Arma: {IdArma} - Categoria: {Categoria} - Nome: {Nome} - Punti Danno: {PuntiDanno}";
+        }
     }
 }

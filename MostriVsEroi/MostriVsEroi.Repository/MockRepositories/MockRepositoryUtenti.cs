@@ -39,7 +39,19 @@ namespace MostriVsEroi.Repository.MockRepositories
 
         public bool Update(User item)
         {
-            throw new NotImplementedException();
+            //mi starà passando lo user diventato admin (già con Admin == true)
+            int index = -1;
+
+            User oldItem = GetAll(e => e.UserId == item.UserId).SingleOrDefault();
+            index = InMemoryStorage.Utenti.IndexOf(oldItem);
+
+            if (index != -1)
+            {
+                InMemoryStorage.Utenti[index] = item;
+                return true;
+            }
+
+            return false;
         }
     }
 }

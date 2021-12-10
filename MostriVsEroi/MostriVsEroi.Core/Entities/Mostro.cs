@@ -27,5 +27,10 @@ namespace MostriVsEroi.Core.Entities
             Orco,
             SignoreDelMale
         }
+
+        public override string ToString()
+        {
+            return $"ID Mostro: {IdMostro} - Classe: {Categoria} - Nome: {Nome}\t Livello: {Livello} - Punti Vita: {PuntiVita} ";
+        }
     }
 }

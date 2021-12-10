@@ -11,13 +11,17 @@ namespace MostriVsEroi.ConsoleApp
 {
     public class Menu
     {
-        static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti());
+        static private readonly IBusinessLayer bl = new MainBusinessLayer(new MockRepositoryEroi(), new MockRepositoryMostri(), new MockRepositoryUtenti(), new MockRepositoryArmi());
 
 
         internal static void Start()
         {
             // benvenuto
             Console.WriteLine("Benvenuto!");
+
+            
+
+            
 
             //commento inserito nel branch Laura
             //commento inserito da antonio
