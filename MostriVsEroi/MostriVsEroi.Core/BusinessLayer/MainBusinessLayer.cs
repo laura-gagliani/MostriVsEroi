@@ -44,6 +44,11 @@ namespace MostriVsEroi.Core.BusinessLayer
             throw new NotImplementedException();
         }
 
+        public bool AggiornaUtente(int idUtenteDaAggiornare)
+        {
+            throw new NotImplementedException();
+        }
+
         public int CalcolaEsitoPartita(Eroe e, Mostro m)
         {
             throw new NotImplementedException();
@@ -79,7 +84,17 @@ namespace MostriVsEroi.Core.BusinessLayer
             throw new NotImplementedException();
         }
 
+        public Mostro GetRandomMostro(int livelloEroe)
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetUserByNicknameAndPassword(string nickname, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetUsers()
         {
             throw new NotImplementedException();
         }
